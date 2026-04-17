@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jam Digital dan Tanggal</title>
+
+<style>
+body{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  background:#ffffff;
+  font-family:Arial, sans-serif;
+}
+
+.clock{
+  border:4px solid #d28ed8;
+  padding:20px 40px;
+  font-size:50px;
+  color:#d582dd;
+  background:#ecd0e9;
+  border-radius:10px;
+  letter-spacing:3px;
+  margin-bottom:20px;
+}
+
+#demo{
+  border:3px solid #d28ed8;
+  padding:15px 30px;
+  background:#f8e8f6;
+  border-radius:10px;
+  font-size:18px;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Menampilkan Hari, Tanggal, Bulan, Tahun dan Waktu</h1>
+
+<div class="clock" id="clock">00:00:00</div>
+
+<div id="demo"></div>
+
+<script>
+
+function updateTime(){
+
+let sekarang = new Date();
+
+let hariAngka = sekarang.getDay();
+let tanggal = sekarang.getDate();
+let bulanAngka = sekarang.getMonth();
+let tahun = sekarang.getFullYear();
+
+let jam = sekarang.getHours();
+let menit = sekarang.getMinutes();
+let detik = sekarang.getSeconds();
+
+if (jam < 10) jam = "0" + jam;
+if (menit < 10) menit = "0" + menit;
+if (detik < 10) detik = "0" + detik;
+
+
+// JAM DIGITAL
+document.getElementById("clock").textContent =
+jam + ":" + menit + ":" + detik;
+
+
+// NAMA HARI
+let hari;
+switch(hariAngka){
+case 0: hari="Minggu"; break;
+case 1: hari="Senin"; break;
+case 2: hari="Selasa"; break;
+case 3: hari="Rabu"; break;
+case 4: hari="Kamis"; break;
+case 5: hari="Jumat"; break;
+case 6: hari="Sabtu";
+}
+
+
+// PASARAN
+let pasaran;
+switch(hariAngka){
+case 3: pasaran="Kliwon"; break;
+case 4: pasaran="Legi"; break;
+case 0: pasaran="Pahing"; break;
+case 1: pasaran="Pon"; break;
+case 2: pasaran="Wage"; break;
+}
+
+
+// NAMA BULAN
+let bulan;
+switch(bulanAngka){
+case 0: bulan="Januari"; break;
+case 1: bulan="Februari"; break;
+case 2: bulan="Maret"; break;
+case 3: bulan="April"; break;
+case 4: bulan="Mei"; break;
+case 5: bulan="Juni"; break;
+case 6: bulan="Juli"; break;
+case 7: bulan="Agustus"; break;
+case 8: bulan="September"; break;
+case 9: bulan="Oktober"; break;
+case 10: bulan="November"; break;
+case 11: bulan="Desember";
+}
+
+
+// TAMPILKAN DATA
+document.getElementById("demo").innerHTML =
+"Hari: " + hari + "<br>" +
+"Pasaran: " + pasaran + "<br>" +
+"Tanggal: " + tanggal + "<br>" +
+"Bulan: " + bulan + "<br>" +
+"Tahun: " + tahun;
+
+}
+
+// update tiap 1 detik
+setInterval(updateTime,1000);
+updateTime();
+
+</script>
+
+</body>
+</html>
